@@ -1,0 +1,41 @@
+{
+  "name": "indecision",
+  "version": "1.0.0",
+  "description": "",
+  "main": "\u001c",
+  "scripts": {
+    "serve": "live-server public/",
+    "build": "webpack --watch",
+    "dev-server": "webpack serve",
+    "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch"
+  },
+  "repository": "ssh://git@24.146.3.19:2020/waldoeGeek/indecision.git",
+  "author": "waldoeGeek <thomas.reynolds@student.sl.on.ca>",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.12.17",
+    "@babel/plugin-proposal-class-properties": "^7.12.13",
+    "@babel/preset-env": "^7.12.17",
+    "@babel/preset-react": "^7.12.13",
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.0.2",
+    "live-server": "^1.2.1",
+    "node-sass": "^5.0.0",
+    "normalize.css": "^8.0.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-modal": "^3.12.1",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "sass-loader": "^11.0.1",
+    "style-loader": "^2.0.0",
+    "validator": "^13.5.2",
+    "webpack": "^5.15.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.3.1"
+  }
+}
