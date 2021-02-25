@@ -4,152 +4,152 @@ import {v4 as uuidv4} from 'uuid';
 
 // Action generators
 
-const addExpense = (
-    { description = '',
-    note = '',
-    amount = 0,
-    createdAt = 0 
-    } = {}
-) => ({
-    type: 'ADD_EXPENSE',
-    expense: {
-        id: uuidv4(),
-        description,
-        note,
-        amount,
-        createdAt
-    }
-});
+// const addExpense = (
+//     { description = '',
+//     note = '',
+//     amount = 0,
+//     createdAt = 0 
+//     } = {}
+// ) => ({
+//     type: 'ADD_EXPENSE',
+//     expense: {
+//         id: uuidv4(),
+//         description,
+//         note,
+//         amount,
+//         createdAt
+//     }
+// });
 
-const removeExpense = (
-    {
-        id
-    } = {}
-) => ({
-    type: 'REMOVE_EXPENSE',
-    id
-});
+// const removeExpense = (
+//     {
+//         id
+//     } = {}
+// ) => ({
+//     type: 'REMOVE_EXPENSE',
+//     id
+// });
 
-const editExpense = (id, updates) => ({
-    type: 'EDIT_EXPENSE',
-    id,
-    updates
-})
+// const editExpense = (id, updates) => ({
+//     type: 'EDIT_EXPENSE',
+//     id,
+//     updates
+// })
 
 // Filter
-const setTextFilter = (text = '') => ({
-    type: 'SET_TEXT',
-    text
-});
+// const setTextFilter = (text = '') => ({
+//     type: 'SET_TEXT',
+//     text
+// });
 
-const sortByDate = () => ({
-    type: 'SORT_BY_DATE',
-    // sortBy: 'date'
-})
+// const sortByDate = () => ({
+//     type: 'SORT_BY_DATE',
+//     // sortBy: 'date'
+// })
 
-const sortByAmount = () => ({
-    type: 'SORT_BY_AMOUNT',
-    // sortBy: 'amount'
-})
+// const sortByAmount = () => ({
+//     type: 'SORT_BY_AMOUNT',
+//     // sortBy: 'amount'
+// })
 
-const setStartDate = (startDate) => ({
-    type: 'SET_START_DATE',
-    startDate
-});
+// const setStartDate = (startDate) => ({
+//     type: 'SET_START_DATE',
+//     startDate
+// });
 
-const setEndDate = (endDate) => ({
-    type: 'SET_END_DATE',
-    endDate
-});
+// const setEndDate = (endDate) => ({
+//     type: 'SET_END_DATE',
+//     endDate
+// });
 
 // expenses Reducer
-const expensesReducerDefaultState = [];
+// const expensesReducerDefaultState = [];
 
-const expensesReducer = (state = expensesReducerDefaultState, action) => {
-    switch (action.type) {
-        case 'ADD_EXPENSE':
-            return [
-                ...state,
-                action.expense
-            ]
-        case 'REMOVE_EXPENSE':
-            return state.filter(({ id }) => id != action.id)
-        case 'EDIT_EXPENSE':
-            return state.map((expense) => {
-                if (expense.id == action.id) {
-                    return {
-                        ...expense,
-                        ...action.updates
-                    };
-                } else {
-                    return expense;
-                }
-            })
-        default:
-            return state;
-    }
-};
+// const expensesReducer = (state = expensesReducerDefaultState, action) => {
+//     switch (action.type) {
+//         case 'ADD_EXPENSE':
+//             return [
+//                 ...state,
+//                 action.expense
+//             ]
+//         case 'REMOVE_EXPENSE':
+//             return state.filter(({ id }) => id != action.id)
+//         case 'EDIT_EXPENSE':
+//             return state.map((expense) => {
+//                 if (expense.id == action.id) {
+//                     return {
+//                         ...expense,
+//                         ...action.updates
+//                     };
+//                 } else {
+//                     return expense;
+//                 }
+//             })
+//         default:
+//             return state;
+//     }
+// };
 
 // filters reducer
-const fitersReducerDefaultState = {
-    text: '', 
-    sortBy: '', 
-    startDate: undefined, 
-    endDate: undefined
-};
+// const fitersReducerDefaultState = {
+//     text: '', 
+//     sortBy: '', 
+//     startDate: undefined, 
+//     endDate: undefined
+// };
 
-const filtersReducer = (state = fitersReducerDefaultState, action) => {
-    switch (action.type) {
-        case 'SET_TEXT':
-            return {
-                ...state,
-                text: action.text
-            }
-        case 'SORT_BY_AMOUNT':
-            return {
-                ...state,
-                sortBy: 'amount'
-            }
-        case 'SORT_BY_DATE':
-            return {
-                ...state,
-                sortBy: 'date'
-            }
-        case 'SET_START_DATE':
-            return {
-                ...state,
-                startDate: action.startDate
-            }
-            case 'SET_END_DATE':
-                return {
-                    ...state,
-                    endDate: action.endDate
-                }
-        default:
-            return state;
-    }
-};
+// const filtersReducer = (state = fitersReducerDefaultState, action) => {
+//     switch (action.type) {
+//         case 'SET_TEXT':
+//             return {
+//                 ...state,
+//                 text: action.text
+//             }
+//         case 'SORT_BY_AMOUNT':
+//             return {
+//                 ...state,
+//                 sortBy: 'amount'
+//             }
+//         case 'SORT_BY_DATE':
+//             return {
+//                 ...state,
+//                 sortBy: 'date'
+//             }
+//         case 'SET_START_DATE':
+//             return {
+//                 ...state,
+//                 startDate: action.startDate
+//             }
+//             case 'SET_END_DATE':
+//                 return {
+//                     ...state,
+//                     endDate: action.endDate
+//                 }
+//         default:
+//             return state;
+//     }
+// };
 
 // timestamps(milliseconds) unix epoch
 // jan 1st 1970
 // 
 
 // get visible expenses
-const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
-    return expenses.filter((expense) => {
-        const startDateMatch = typeof startDate !== 'number' || expense.createdAt >= startDate;
-        const endDateMatch = typeof endDate !== 'number' || expense.createdAt <= endDate;
-        const textMatch = expense.description.toLowerCase().includes(text.toLowerCase());
+// const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
+//     return expenses.filter((expense) => {
+//         const startDateMatch = typeof startDate !== 'number' || expense.createdAt >= startDate;
+//         const endDateMatch = typeof endDate !== 'number' || expense.createdAt <= endDate;
+//         const textMatch = expense.description.toLowerCase().includes(text.toLowerCase());
 
-        return startDateMatch && endDateMatch && textMatch;
-    }).sort((a, b) => {
-        if (sortBy === 'date') {
-            return a.createdAt < b.createdAt ? 1 : -1;
-        } else if (sortBy === 'amount') {
-            return a.amount < b.amount ? 1 : -1;
-        }
-    });
-};
+//         return startDateMatch && endDateMatch && textMatch;
+//     }).sort((a, b) => {
+//         if (sortBy === 'date') {
+//             return a.createdAt < b.createdAt ? 1 : -1;
+//         } else if (sortBy === 'amount') {
+//             return a.amount < b.amount ? 1 : -1;
+//         }
+//     });
+// };
 
 // store creation
 
