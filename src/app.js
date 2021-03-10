@@ -14,9 +14,9 @@ const store = configureStore();
 
 
 // store.subscribe(() => {
-//     const state = store.getState();
-//     const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
-//     console.log(visibleExpenses);
+//   const state = store.getState();
+//   const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+//   console.log(visibleExpenses);
 // })
 
 
@@ -29,7 +29,7 @@ store.dispatch(addExpense({ description: 'Rent', amount: 1000, createdAt: 1000 }
 
 
 // setTimeout(() => {
-//     store.dispatch(setTextFilter("bill"));
+//   store.dispatch(setTextFilter("bill"));
 // }, 3000)
 // store.dispatch(getVisibleExpenses());
 
@@ -43,10 +43,10 @@ console.log(store.getState());
 
 
 const jsx = (
-    <Provider store={store}>
-        <AppRouter/>
+  <Provider store={store}>
+    <AppRouter/>
 
-    </Provider>
+  </Provider>
 )
 
 
