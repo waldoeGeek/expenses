@@ -1,12 +1,21 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const EditExpensePage = (props) => {
     console.log(props);
     return (
         <div>
-            this is my edit expense component.
+            this is my edit expense component. it has an id of {props.match.params.id}
         </div>
     );
 };
 
-export default EditExpensePage;
+const mapStateToProps = (state, props) => {
+    return {
+        expense: state.expenses.find((expense) => {
+            return expense.id === props.match.params.id;
+        })
+    }
+}
+
+export default connect(mapStateToProps)(EditExpensePage);

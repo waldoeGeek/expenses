@@ -1,6 +1,6 @@
 const fitersReducerDefaultState = {
     text: '',
-    sortBy: '',
+    sortBy: 'date',
     startDate: undefined,
     endDate: undefined
 };
